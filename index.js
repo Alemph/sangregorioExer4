@@ -8,13 +8,30 @@ function generateUniqueID(firstName, lastName) {
     return id;
 }
 
+function addAccount(userData) {
+    const [firstName, lastName, email, age] = userData;
+    
+    if (!firstName || !lastName || !email || !age) {
+        console.log("All fields are required.");
+        return;
+    }
 
-//test
+    if (typeof firstName !== 'string' || typeof lastName !== 'string' || typeof email !== 'string' || typeof age !== 'number') {
+        console.log("Invalid data types.");
+        return;
+    }
 
-import { generateUniqueID, addAccount } from './index.js';
+    if (firstName.trim() === '' || lastName.trim() === '' || email.trim() === '') {
+        console.log("First name, last name, and email cannot be empty.");
+        return;
+    }
 
-// Testing generateUniqueID function
-console.log(generateUniqueID("Alan", "Turing"));
+    if (!validator.isEmail(email)) {
+        console.log("Invalid email format.");
+        return;
+    }
 
-// Testing addAccount function
-addAccount(["Alan", "Turing", "aturing@w3c.com", 58]);
+    if (age < 18) {
+        console.log("Age must be at least 18.");
+        return;
+    }
