@@ -35,3 +35,12 @@ function addAccount(userData) {
         console.log("Age must be at least 18.");
         return;
     }
+
+    const uniqueID = generateUniqueID(firstName, lastName);
+    const userDataString = `${firstName},${lastName},${email},${age},${uniqueID}\n`;
+    
+    appendFileSync('users.txt', userDataString, 'utf8');
+    console.log("Account added successfully.");
+}
+
+export { generateUniqueID, addAccount };
